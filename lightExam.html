@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Light</title>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css">
+    .question, .answer {
+        margin-top: 40px;
+    }
+    body{
+    	padding: 0 50px;
+    }
+    </style>
+</head>
+
+<body>
+	<h3>科目三灯光随机模拟</h3>
+    <div class="alert alert-danger question" role="alert"></div>
+    <button type="button" class="btn btn-success btn-lg next">下一题 ></button>
+    <!-- Contextual button for informational alert messages -->
+    <button type="button" class="btn btn-info btn-lg look">查看答案</button>
+    <div class="alert alert-success answer " role="alert"> </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript">
+    var tests = [{
+            '1.夜间通过急弯、坡路': '灯光操作: 交替使用远近光灯'
+        },
+
+        {
+            '2.夜间通过坡路、拱桥': '灯光操作: 交替使用远近光灯'
+        },
+        {
+            '3.夜间通过急弯、拱桥': '灯光操作: 交替使用远近光灯'
+        },
+        {
+            '4,夜间通过拱桥、人行横道': '灯光操作: 交替使用远近光灯'
+        },
+        {
+            '5.夜间通过没有交通信号灯控制的路口': '灯光操作: 交替使用远近光灯'
+        },
+        {
+            '6.夜间超越前方车辆': '灯光操作: 交替使用远近光灯'
+        },
+        {
+            '7.夜间同方向近距离跟车行驶': '灯光操作: 使用近光灯'
+        },
+        {
+            '8.夜间与机动车会车': '灯光操作: 使用近光灯'
+        },
+        {
+            '9.夜间直行通过路口': '灯光操作: 使用近光灯'
+        },
+        {
+            '10.夜间路口左转弯': '灯光操作: 近光灯+左转向灯'
+        },
+        {
+            '11.夜间路口右转弯': '灯光操作: 近光灯+右转向灯'
+        },
+        {
+            '12.夜间在有路灯的道路上行驶': '灯光操作: 近光灯'
+        },
+        {
+            '13.夜间在照明良好的道路上行驶': '灯光操作: 近光灯'
+        },
+        {
+            '14.请打开近光灯': '灯光操作: 近光灯'
+        },
+        {
+            '15.请打开远光灯': '灯光操作: 远光灯'
+        },
+        {
+            '16.夜间在没有路灯，照明不良条件下行驶': '灯光操作: 远光灯'
+        },
+        {
+            '17.路边临时停车': '灯光操作: 危险报警闪光灯+ 示廓灯（属称小灯）'
+        },
+        {
+            '18.夜间在窄路与非机动车会车': '灯光操作: 近光灯'
+        },
+        {
+            '19.夜间在窄桥与非机动车会车': '灯光操作: 近光灯'
+        },
+        {
+            '20.雾天行驶': '灯光操作: 雾灯+ 危险报警闪光灯'
+        }
+    ]
+    console.log(tests);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    function returnKey(obj) {
+    	for(var key in obj){
+    		return key;
+    	}
+    }
+
+    function returnValue(obj) {
+    	for(var key in obj){
+    		return obj[key];
+    	}
+    }
+
+
+
+
+    var len = tests.length;
+
+
+
+    var index = Math.floor(Math.random() * len);
+
+    var q = $('.question');
+    var ans = $('.answer');
+
+    q.html(returnKey(tests[index]));
+
+
+    $('.look').on('click', function(){
+    	ans.html(returnValue(tests[index]));
+    });
+
+    $('.next').on('click', function(){
+    	ans.html('');
+    	index = Math.floor(Math.random() * len);
+    	q.html(returnKey(tests[index]));
+
+    });
+
+
+
+    </script>
+</body>
+
+</html>
