@@ -1,0 +1,658 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: red;
+        animation-name: MoveAnimation;
+        animation-duration: 20s;
+        animation-fill-mode: both;
+        animation-iteration-count: infinite;
+        animation-play-state: running;
+        animation-direction: alternate;
+        cursor: pointer;
+      }
+      button:hover {
+        animation-play-state: paused;
+      }
+      @keyframes MoveAnimation {
+        from {
+          top: 0;
+          left: 0;
+        }
+        to {
+          top: calc(100% - 30px);
+          left: calc(100% - 50px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button>button</button>
+    <script></script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .content {
+        height: 2000px;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        position: absolute;
+        top: 200px;
+        left: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content"></div>
+    <div class="box"></div>
+  </body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .box {
+        /*  position: absolute;
+        left: 100px;
+        top: 200px;
+        width: 200px;
+        height: 200px; */
+        background-image: linear-gradient(0deg, red, blue);
+        width: 100%;
+        height: 1000px;
+      }
+      .container {
+        position: absolute;
+        left: 50px;
+        top: 100px;
+        width: 200px;
+        height: 300px;
+        border: 1px solid red;
+        overflow-y: auto;
+        padding-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="relative container">
+      <div class="box">0</div>
+    </div>
+    <script>
+      const container = document.querySelector('.container');
+      const box = document.querySelector('.box');
+      console.log(box.getBoundingClientRect());
+      container.addEventListener('scroll', onScroll);
+      console.log(container.clientHeight, container.offsetHeight);
+      console.log(container.scrollHeight);
+      // container.scrollHeight - container.clientHeight - container.scrollTop  这个值如果小于某个值， 那么就可以触发加载
+      let isLoading = false
+      let timer = null
+      let index = 0
+      function onScroll() {
+        if(timer) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+          if(container.scrollHeight - container.clientHeight - container.scrollTop < 100) {
+            const div = document.createElement("div")
+            div.classList.add("box")
+            div.innerText = ++index
+            container.appendChild(div)
+          }
+        }, 200)
+        
+      }
+    </script>
+  </body>
+</html>
+ -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      img {
+        width: 200px;
+      }
+      .img1:hover {
+        transform: translateZ(0) scale(3);
+      }
+      .img2:hover {
+        transform: scale(3);
+      }
+      svg:hover {
+        transform: scale(10);
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      class="img1"
+      src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+      alt=""
+    />
+    <div></div>
+    <img
+      class="img2"
+      src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+      alt=""
+    />
+    <div>
+      <svg
+        t="1642490282834"
+        class="icon"
+        viewBox="0 0 2594 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        p-id="28674"
+        width="100"
+        height="100"
+      >
+        <path
+          d="M547.24319 0l-133.798478 391.325055L0 401.83519l330.821104 248.188074-20.42346 372.208294 141.447068-412.207116-148.288393-111.24535 185.31573-4.717939 59.969963-175.414969 61.757252 174.802454 413.463558 5.606871 35.04216-102.758086-374.09924-6.34503z"
+          fill="#243661"
+          p-id="28675"
+        ></path>
+        <path
+          d="M573.260957 603.751656l-35.46935 104.620761h415.181743l35.469349-104.620761zM466.849767 917.610798h415.024687l35.46935-104.620761H502.315975z"
+          fill="#0195FF"
+          p-id="28676"
+        ></path>
+        <path
+          d="M1560.959215 503.368245h37.727803v-30.729423h-37.727803v30.729423z m-101.247215 69.267632h47.449521v-28.30449h-47.449521v28.30449z m116.525546-172.88638l-7.208834-14.455362h67.797595l-15.243779 45.775313h23.278724v123.508221c-1.413497-4.831018-3.587141-7.727117-6.552344-8.73227-2.968344-1.005153-5.726233-1.520294-8.27681-1.520295h-69.072883v28.310773h87.727902v0.603092h5.51892v132.526332h-57.623558l10.585521-16.252074V613.614724h-46.208785v127.695313h-64.829252l11.031558-16.255215V613.614724h-95.762846v-98.806577l-7.620319-11.439902h103.383165v-30.729423h-95.762846v-51.193718l13.139239 10.230577h17.345178l-15.655264-46.381546h67.38297l-7.208835 14.455362 10.588663 31.926184h68.20908l11.03784-31.926184z m-122.041325 334.342282h-52.142331l26.724515-97.590969-9.344785-7.240246h65.693055l-30.930454 104.831215z m-96.62665 8.430724h-54.243731v-224.092663l-11.86395 207.837448h-33.898798l11.037841-216.268171-7.623461-13.867976h42.348368v-27.117153h-44.484319v-51.793669l13.136099 10.83681h31.34822v-29.516957l-7.62346-12.055559h61.867191v41.572516h43.243582v53.012417c-1.448049-4.815313-4.243632-8.016098-8.484122-9.627485-4.240491-1.611387-7.620319-2.428074-10.174037-2.428073h-24.585423v27.117153h42.794404l-7.620319 13.867976 9.759411 216.268171h-34.347975l-10.585521-205.434503v221.689718zM2108.626454 748.547141c-1.413497-4.812172-3.690798-7.915583-6.794209-9.341644-3.103411-1.400933-5.930405-2.101399-8.44957-2.101399H1744.641571v-41.566233l270.772613-240.369865h-274.60162v-51.79681l13.13924 10.227436h139.835681v-22.886086l-8.034945-10.83681h62.278675v33.722896h148.731288v41.569374l-261.46238 240.369865h273.326331v53.009276zM2261.997153 508.783509h263.149154v-29.516957h-263.149154v29.516957z m0-64.45546h263.149154v-28.910724h-263.149154v28.910724z m317.361473 99.393963h-158.456147v29.516957h156.766233v46.400393c-1.413497-4.83416-3.656245-7.937571-6.756516-9.341644-3.137963-1.400933-5.933546-2.120245-8.484122-2.120246h-141.525595v28.929571h149.145914v46.987779c-1.413497-4.416393-3.656245-7.541791-6.794209-9.344785-3.103411-1.796712-5.792196-2.707632-8.034945-2.707632h-134.31676v29.520098h171.18076v46.381546c-1.413497-4.419534-3.587141-7.431853-6.552343-9.040098-2.965202-1.59254-5.723092-2.406086-8.273669-2.406086H2195.02881v-45.184785l13.139239 10.249423h158.490699v-29.520098h-149.595092v-45.187926l13.553865 10.252564h136.041227v-28.929571h-122.041325l-1.689914 13.261743h-39.414576l8.480981-54.224884-7.620319-12.049276h48.278773l-2.965202 18.073914h116.971582v-29.516957h-158.905325V391.318773l-7.620319-11.446184h379.225522v163.849423zM1409.784147 939.221595c-0.788417-3.159951-1.972613-5.264491-3.590282-6.323043-1.617669-1.042847-3.194503-1.573693-4.736785-1.573693h-109.718773v49.723681h122.650699v35.516466c-0.618798-3.163092-1.802994-5.267632-3.571435-6.329325-1.765301-1.042847-3.345276-1.573693-4.736786-1.573693h-144.135852v-174.406675l-4.3787-7.884172h156.822773v35.513325c-0.618798-3.417521-1.802994-5.653988-3.571435-6.709399-1.765301-1.045988-3.345276-1.573693-4.736786-1.573693h-114.342478v50.106896h118.042699v35.516466zM1505.185767 853.984589h-60.510233v-34.325988l7.164859 6.709399h145.508515v35.516466c-0.772712-3.420663-1.99146-5.588025-3.684515-6.520932-1.711902-0.914061-3.254184-1.378945-4.623706-1.378945h-53.81654v154.677399h-30.03838v-154.677399zM1705.201865 834.252172l-4.155681-7.884172h157.07092v35.513325c-0.769571-3.417521-2.010307-5.584883-3.706503-6.517791-1.689914-0.91092-3.229055-1.378945-4.620564-1.378945h-114.323632v45.772172h122.650699v116.805104c-0.769571-3.163092-2.010307-5.201669-3.706503-6.118871-1.689914-0.929767-3.229055-1.378945-4.620564-1.378945h-144.588172V974.339141l7.387877 6.709399h115.262822v-53.672049h-122.650699v-93.121178zM1948.895018 853.984589h-60.507092v-34.325988l7.161718 6.709399h145.508516v35.516466c-0.769571-3.420663-1.99146-5.588025-3.684516-6.520932-1.708761-0.914061-3.251043-1.378945-4.623705-1.378945h-53.81654v154.677399h-30.038381v-154.677399zM2107.354307 913.967117h64.907779l-17.087607-59.982528h-30.26454l-17.555632 59.982528z m121.956515 94.694871h-29.793374l-19.173301-67.078282h-80.845742l-19.39946 67.078282h-29.796516l51.733988-174.007755-4.38184-7.899877h78.533889l53.122356 181.907632zM2272.959607 899.759902h92.389301v-45.775313h-92.389301v45.775313z m-30.26454-65.504589l-4.152539-7.887313h157.067779v108.905227c-0.93919-3.163092-2.198773-5.330454-3.816442-6.517791-1.614528-1.171632-3.194503-1.765301-4.736785-1.765301h-31.411043l42.502282 81.671853h-34.643239l-40.432295-81.671853h-50.113178v81.671853h-30.26454v-174.406675z"
+          fill="#243661"
+          p-id="28677"
+        ></path>
+      </svg>
+    </div>
+  </body>
+</html>
+ -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        position: absolute;
+        left: 100px;
+        top: 150px;
+        width: 600px;
+        height: 600px;
+        border: 1px solid red;
+      }
+      .box {
+        width: 100px;
+        height: 100px;
+        cursor: move;
+        position: absolute;
+        left: 10px;
+        top: 20px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container">
+        <div class="box"></div>
+      </div>
+    </div>
+    <script>
+      const container = document.querySelector('.container');
+      const box = document.querySelector('.box');
+
+      const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
+      const MOZ_HACK_REGEXP = /^moz([A-Z])/;
+      const ieVersion = document.documentMode ? document.documentMode : 0;
+      const isServer = false;
+      const trim = function (string) {
+        return (string || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
+      };
+      const camelCase = function (name) {
+        return name
+          .replace(
+            SPECIAL_CHARS_REGEXP,
+            function (_, separator, letter, offset) {
+              return offset ? letter.toUpperCase() : letter;
+            }
+          )
+          .replace(MOZ_HACK_REGEXP, 'Moz$1');
+      };
+      const getStyle =
+        ieVersion < 9
+          ? function (element, styleName) {
+              if (isServer) return;
+              if (!element || !styleName) return null;
+              styleName = camelCase(styleName);
+              if (styleName === 'float') {
+                styleName = 'styleFloat';
+              }
+              try {
+                switch (styleName) {
+                  case 'opacity':
+                    try {
+                      return element.filters.item('alpha').opacity / 100;
+                    } catch (e) {
+                      return 1.0;
+                    }
+                  default:
+                    return element.style[styleName] || element.currentStyle
+                      ? element.currentStyle[styleName]
+                      : null;
+                }
+              } catch (e) {
+                return element.style[styleName];
+              }
+            }
+          : function (element, styleName) {
+              if (isServer) return;
+              if (!element || !styleName) return null;
+              styleName = camelCase(styleName);
+              if (styleName === 'float') {
+                styleName = 'cssFloat';
+              }
+              try {
+                // document.defaultView === window
+                var computed = document.defaultView.getComputedStyle(
+                  element,
+                  ''
+                );
+                return element.style[styleName] || computed
+                  ? computed[styleName]
+                  : null;
+              } catch (e) {
+                return element.style[styleName];
+              }
+            };
+      function setStyle(element, styleName, value) {
+        if (!element || !styleName) return;
+
+        if (typeof styleName === 'object') {
+          for (var prop in styleName) {
+            if (styleName.hasOwnProperty(prop)) {
+              setStyle(element, prop, styleName[prop]);
+            }
+          }
+        } else {
+          styleName = camelCase(styleName);
+          if (styleName === 'opacity' && ieVersion < 9) {
+            element.style.filter = isNaN(value)
+              ? ''
+              : 'alpha(opacity=' + value * 100 + ')';
+          } else {
+            element.style[styleName] = value;
+          }
+        }
+      }
+      box.addEventListener('mousedown', (e) => {
+        console.log(e.clientX, e.clientY);
+        console.log(box.offsetLeft, box.offsetTop);
+        const leftDelta = e.clientX - box.offsetLeft;
+        const topDelta = e.clientY - box.offsetTop;
+        console.log('leftDelta', leftDelta);
+        document.addEventListener('mousemove', mousemove);
+        function mousemove(e) {
+          const left = e.clientX - leftDelta;
+          const top = e.clientY - topDelta;
+          setStyle(box, 'left', left + 'px');
+          setStyle(box, 'top', top + 'px');
+        }
+        document.addEventListener(
+          'mouseup',
+          function mouseup(e) {
+            document.removeEventListener('mousemove', mousemove);
+            document.removeEventListener('mouseup', mouseup);
+          },
+          { once: true }
+        );
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+      }
+      .box {
+        border: 1px solid #eee;
+        width: 87px;
+        height: 98px;
+        background-image: url('./light.png');
+        /* background-size: 78px 98px; */
+        background-repeat: no-repeat;
+        background-position-x: 0;
+        background-position-y: 0px;
+        /* 2450 - 98 */
+        transition: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      const box = document.querySelector('.box');
+      let index = 0;
+      function animate() {
+        if (index >= 75) return;
+        if (index % 3 === 0) {
+          box.style.backgroundPositionY = (index / 3) * -98 + 'px';
+        }
+        index++;
+        requestAnimationFrame(animate);
+      }
+      animate();
+    </script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .parent {
+        user-select: all;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>test</h1>
+    <iframe src="" frameborder="0"></iframe>
+    <div class="parent">
+      111111<span>222222<span class="xxxx">3333333</span></span>
+    </div>
+    <script>
+      const AllDataList = [
+        {
+          id: 4,
+          report_name: '4',
+          _parentId: 1,
+          checked: false,
+          _sort_id: 4,
+          is_report: true
+        },
+        {
+          id: 1,
+          report_name: '1',
+          expanded: true,
+          checked: false,
+          _sort_id: 1,
+          is_report: false
+        },
+        {
+          id: 2,
+          report_name: '2',
+          _parentId: 1,
+          checked: false,
+          _sort_id: 2,
+          is_report: true
+        },
+        {
+          id: 7,
+          report_name: '7',
+          _parentId: 5,
+          checked: false,
+          _sort_id: 7,
+          is_report: true
+        },
+        {
+          id: 8,
+          report_name: '8',
+          _parentId: 5,
+          checked: false,
+          _sort_id: 8,
+          is_report: true
+        },
+        {
+          id: 3,
+          report_name: '3',
+          _parentId: 1,
+          checked: false,
+          _sort_id: 3,
+          is_report: true
+        },
+
+        {
+          id: 5,
+          report_name: '5',
+          expanded: true,
+          checked: false,
+          _sort_id: 5,
+          is_report: false
+        },
+        {
+          id: 6,
+          report_name: '6',
+          _parentId: 5,
+          checked: false,
+          _sort_id: 6,
+          is_report: true
+        }
+      ];
+
+      function flatArrayToTree(data, rootNodePredicateFn, parentKey, id = 'id') {
+        let r = [];
+        data.forEach(function (node) {
+          this[node[id]] = {
+            ...node,
+            children: this[node[id]] && this[node[id]].children
+          };
+
+          if (rootNodePredicateFn(node, parentKey)) {
+            r.push(this[node[id]]);
+          } else {
+            this[node[parentKey]] = this[node[parentKey]] || {};
+            this[node[parentKey]].children = this[node[parentKey]].children || [];
+            this[node[parentKey]].children.push(this[node[id]]);
+          }
+        }, Object.create(null));
+        return r;
+      }
+      const result = flatArrayToTree(
+        AllDataList,
+        (node, parentKey) => {
+          if (!node[parentKey]) {
+            return true;
+          }
+          return false;
+        },
+        '_parentId',
+        'id'
+      );
+      console.debug(result);
+      // 深度遍历
+      function depthFirstTraversal(node) {
+        const nodes = [];
+        if (node != null) {
+          var stack = [];
+          if (Array.isArray(node)) {
+            stack.push(...node);
+          } else {
+            stack.push(node);
+          }
+
+          while (stack.length != 0) {
+            let item = stack.pop();
+            nodes.push(item);
+            const children = item.children;
+            if (children && children.length > 0) {
+              for (let i = children.length - 1; i >= 0; i--) {
+                stack.push(children[i]);
+              }
+            }
+          }
+        }
+        return nodes;
+      }
+      console.debug(depthFirstTraversal(result));
+    </script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      for (let i = 0, len = 4; i < len; i++) {
+        const blob = new Blob(['hello, world' + i], { type: 'text/plain' });
+        const a = document.createElement('a');
+        a.href = window.URL.createObjectURL(blob);
+        a.download = 'hello-world' + i + '.txt';
+        a.click();
+      }
+    </script>
+  </body>
+</html>
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .my-button {
+        display: inline-block;
+        line-height: 1;
+        white-space: nowrap;
+        cursor: pointer;
+        background: #fff;
+        border: 1px solid #dcdfe6;
+        color: #606266;
+        -webkit-appearance: none;
+        text-align: center;
+        box-sizing: border-box;
+        outline: none;
+        margin: 0;
+        transition: 0.1s;
+        font-weight: 500;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        padding: 12px 20px;
+        font-size: 14px;
+        border-radius: 4px;
+      }
+      .my-button:hover,
+      .my-button:focus {
+        color: #409eff;
+        border-color: #c6e2ff;
+        background-color: #ecf5ff;
+      }
+
+      .my-button:active {
+        color: #3a8ee6;
+        border-color: #3a8ee6;
+        outline: none;
+      }
+      .my-button.my-button--disabled {
+        color: #c0c4cc;
+        cursor: not-allowed;
+        background-image: none;
+        background-color: #fff;
+        border-color: #ebeef5;
+      }
+    </style>
+    <button class="my-button">btn</button>
+    <button class="my-button my-button--disabled" disabled="disabled">btn</button>
+    <script>
+      /* function foo() {
+        console.log('foo');
+      }
+
+      var foo;
+      console.log(foo); */
+
+      /* {
+        function a() {}
+        a = 50;
+      }
+      console.log(a); // function a
+      {
+        b = 50;
+        function b() {}
+      }
+      console.log(b); // 50 */
+      /* var foo = 1;
+      function foo() {}
+
+      console.log(foo); */
+
+      'use strict';
+
+      var b = 10;
+      (function b() {
+        b = 20;
+        console.log(b);
+      })();
+
+      document.addEventListener('click', e => {
+        e.stopPropagation();
+        e.preventDefault();
+      });
+    </script>
+  </body>
+</html>
