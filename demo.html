@@ -1,0 +1,311 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .draggable-box {
+        padding: 8px 12px;
+        background-color: #bbb;
+        width: 200px;
+        margin-bottom: 12px;
+      }
+      .dropzone {
+        width: 400px;
+        height: 400px;
+        margin: 20px;
+        border: 2px solid #ccc;
+        transition: all 0.25s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="dragBox" class="draggable-box" draggable="true">I am draggable</div>
+    <div class="draggable-box" draggable="false">I am not draggable</div>
+    <div style="display: flex">
+      <div class="dropzone">
+        <span>drop here</span>
+      </div>
+      <div class="dropzone">
+        <span>drop here</span>
+      </div>
+    </div>
+    <script>
+      const dragBox = document.querySelector('#dragBox');
+      const dropzones = document.querySelectorAll('.dropzone');
+      dragBox.addEventListener('dragstart', e => {
+        console.log(e);
+        e.target.style.opacity = '0.5';
+      });
+      dragBox.addEventListener('drag', e => {
+        e.preventDefault();
+      });
+      /* dragBox.addEventListener('dragover', e => {
+        e.preventDefault();
+      }); */
+      dragBox.addEventListener('dragend', e => {
+        e.preventDefault();
+        console.log('dragend', e);
+        e.target.style.opacity = '';
+      });
+      /* 采用代理是更合理的方法 */
+      for (let i = 0, len = dropzones.length; i < len; i++) {
+        const dropzone = dropzones[i];
+        dropzone.addEventListener('dragenter', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          // 可以做一些高亮的操作
+          e.target.style.borderColor = 'blue';
+        });
+        dropzone.addEventListener('dragover', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        });
+        dropzone.addEventListener('dragleave', e => {
+          e.preventDefault();
+          e.stopPropagation();
+          // 可以做一些样式重置的操作
+          e.target.style.borderColor = '';
+        });
+        dropzone.addEventListener('drop', e => {
+          console.log('drop');
+          // 阻止一些默认事件， 比如图片预览，打开链接等功能
+          e.preventDefault();
+          e.target.appendChild(dragBox);
+        });
+      }
+    </script>
+  </body>
+</html> -->
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      ul {
+        list-style: none;
+      }
+      html,
+      body {
+        height: 100%;
+        background-color: #ddd;
+      }
+      .tab-container {
+        display: flex;
+        position: relative;
+        background-color: #fff;
+      }
+      .tab {
+        width: 150px;
+        height: 50px;
+        border: 1px solid blue;
+        position: relative;
+        z-index: 2;
+      }
+      .tab:active {
+        color: red;
+      }
+      .tab + .tab {
+        margin-left: 10px;
+      }
+      .mask {
+        position: absolute;
+        width: 150px;
+        height: 50px;
+        left: 1px;
+        top: 1px;
+        background-color: cyan;
+        z-index: 1;
+        transition: left 0.2s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <ul class="tab-container">
+        <li class="mask"></li>
+        <li class="tab">tab1 <sup>222</sup></li>
+        <li class="tab">tab2</li>
+        <li class="tab">tab3</li>
+      </ul>
+      <div class="content-container"></div>
+    </div>
+    <script>
+      const tabContainer = document.querySelector('.tab-container');
+      const contentContainer = document.querySelector('.content-container');
+      const mask = document.querySelector('.mask');
+      tabContainer.addEventListener('click', e => {
+        e.stopPropagation();
+        console.log(e.target);
+        mask.style.left = e.target.offsetLeft + 1 + 'px';
+        contentContainer.textContent = e.target.textContent;
+      });
+    </script>
+  </body>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .container {
+        display: flex;
+        /* align-items: stretch; */
+      }
+      .container .box {
+        flex: 1;
+      }
+      .box1 {
+        height: 150px;
+        background-color: #333;
+      }
+      .box2 {
+        /* height: 150px; */
+        background-color: #666;
+      }
+      .box3 {
+        /* height: 150px; */
+        background-color: #999;
+      }
+    </style>
+    <div class="container">
+      <div class="box box1"></div>
+      <div class="box box2"></div>
+      <div class="box box3"></div>
+    </div>
+  </body>
+</html>
+ -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul id="container"></ul>
+    <script>
+      const container = document.querySelector('#container');
+      const _log = console.log;
+      window.console.log = function (...args) {
+        const content = args.toString();
+        const li = document.createElement('li');
+        li.textContent = content;
+        container.appendChild(li);
+        _log.apply(null, args);
+      };
+      console.log(1);
+      console.log({ x: 1 });
+      console.log([1, 2, 3]);
+      console.log(undefined);
+    </script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      .wrapper {
+        width: 300px;
+        height: 200px;
+        border: 1px solid #ccc;
+        position: relative;
+      }
+      .arrow-top,
+      .arrow-top:before {
+        position: absolute;
+        border-style: solid;
+        border-color: transparent;
+        border-width: 6px;
+        border-top-width: 0;
+        border-bottom-color: #ccc;
+        width: 0;
+        height: 0;
+      }
+      .arrow-top {
+        top: -6px;
+        left: 100px;
+        filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.03));
+      }
+      .arrow-top:before {
+        content: ' ';
+        border-bottom-color: #fff;
+        top: 1.41px;
+        left: -6px;
+      }
+    </style>
+
+    <div class="wrapper" onclick="fn()">
+      <div class="arrow-top"></div>
+    </div>
+    <script>
+      /* new Promise(r => {
+        console.log(1);
+        r();
+        console.log(2);
+      }); */
+      const obj = {
+        broadcastRefreshEvent: function () {
+          let refreshPeriod = 3 * 1000;
+          refreshPeriod = Number(this.refreshPeriod) || refreshPeriod;
+          if (this.autoRefreshTimer) {
+            clearTimeout(this.autoRefreshTimer);
+            this.autoRefreshTimer = 0;
+          }
+          this.autoRefreshTimer = setTimeout(() => {
+            console.log('refresh', new Date());
+            this.broadcastRefreshEvent();
+          }, refreshPeriod);
+        }
+      };
+      // obj.broadcastRefreshEvent();
+
+      function fn() {
+        obj.broadcastRefreshEvent();
+      }
+
+      /* let t;
+      function fn() {
+        if (t) {
+          clearTimeout(t);
+          t = 0;
+        }
+        t = setTimeout(() => {
+          console.log('fn', new Date());
+          fn();
+        }, 1000);
+      }
+      fn(); */
+      // setTimeout;
+
+      const arr = [{ x: 'cdmin' }, { x: 'b002D' }, { x: '2003C' }, { x: '3004D' }];
+      console.log(arr.sort((a, b) => a.x - b.x));
+    </script>
+  </body>
+</html>
